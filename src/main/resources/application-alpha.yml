@@ -1,0 +1,7 @@
+# TODO : 다른 환경에서 테스트할 때 추가할 것
+spring:
+  profiles:
+    active: local
+  redis:
+#    host: Standalone Redis 호스트
+#    port: Standalone Redis 포트
