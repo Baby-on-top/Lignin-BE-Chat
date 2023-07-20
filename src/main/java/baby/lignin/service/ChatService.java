@@ -1,8 +1,10 @@
 package baby.lignin.service;
 
+import baby.lignin.model.ChatMessage;
 import baby.lignin.model.ChatRoom;
 import baby.lignin.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +24,13 @@ public class ChatService {
 
     public ChatRoom findById(String roomId) {
         return chatRoomRepository.findRoomById(roomId);
+    }
+
+    public ChannelTopic sendMessage(ChatMessage message) {
+        return chatRoomRepository.getTopic(message.getRoomId());
+    }
+
+    public void enterChatRoom(String roomId) {
+        chatRoomRepository.addChatRoom(roomId);
     }
 }
