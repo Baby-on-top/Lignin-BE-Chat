@@ -1,9 +1,9 @@
 package baby.lignin.repository;
 
 import baby.lignin.model.ChatRoom;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Repository
