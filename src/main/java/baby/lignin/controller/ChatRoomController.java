@@ -12,7 +12,7 @@ import java.util.List;
 // TODO: @RestController 로 수정
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/chat")
+@RequestMapping("/api/chat")
 public class ChatRoomController {
     private final ChatService chatService;
 
