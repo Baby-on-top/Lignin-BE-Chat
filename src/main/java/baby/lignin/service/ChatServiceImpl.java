@@ -4,6 +4,7 @@ import baby.lignin.entity.MessageEntity;
 import baby.lignin.entity.RoomEntity;
 import baby.lignin.model.ChatMessage;
 import baby.lignin.model.request.RoomCreateRequest;
+import baby.lignin.model.response.MessageResponse;
 import baby.lignin.model.response.RoomInfoResponse;
 import baby.lignin.repository.MessageRepository;
 import baby.lignin.repository.RoomRepository;
@@ -48,6 +49,16 @@ public class ChatServiceImpl implements ChatService {
     public void saveMessage(ChatMessage message) {
         MessageEntity messageEntity = MessageConverter.to(message);
         messageRepository.save(messageEntity);
+    }
+
+    @Override
+    public List<MessageResponse> findMessagesById(String roomId) {
+        List<MessageResponse> messageResponses = new ArrayList<>();
+
+        for (MessageEntity messageEntity: messageRepository.findAllByRoomId(roomId)) {
+            messageResponses.add(MessageConverter.from(messageEntity));
+        }
+        return messageResponses;
     }
 
 //    public ChannelTopic sendMessage(ChatMessage message) {

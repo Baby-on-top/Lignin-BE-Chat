@@ -2,6 +2,7 @@ package baby.lignin.service;
 
 import baby.lignin.model.ChatMessage;
 import baby.lignin.model.request.RoomCreateRequest;
+import baby.lignin.model.response.MessageResponse;
 import baby.lignin.model.response.RoomInfoResponse;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface ChatService {
     RoomInfoResponse findRoomById(String roomId);
 
     void saveMessage(ChatMessage message);
+
+    List<MessageResponse> findMessagesById(String roomId);
 }

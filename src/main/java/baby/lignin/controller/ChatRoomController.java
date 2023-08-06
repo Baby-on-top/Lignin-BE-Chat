@@ -1,6 +1,7 @@
 package baby.lignin.controller;
 
 import baby.lignin.model.request.RoomCreateRequest;
+import baby.lignin.model.response.MessageResponse;
 import baby.lignin.model.response.RoomInfoResponse;
 import baby.lignin.service.ChatServiceImpl;
 import baby.lignin.support.ApiResponse;
@@ -51,11 +52,10 @@ public class ChatRoomController {
         return "/chat/roomdetail";
     }
 
-    // 채팅방 조회
     @GetMapping("/room/{roomId}")
     @ResponseBody
-    @Operation(summary = "채팅방 조회", description = "특정 채팅방을 조화합니다.")
-    public ApiResponse<ApiResponse.SuccessBody<RoomInfoResponse>> roomInfo(@PathVariable String roomId) {
-        return ApiResponseGenerator.success(chatService.findRoomById(roomId), HttpStatus.ACCEPTED, MessageCode.SUCCESS);
+    @Operation(summary = "채팅방에 전송된 메시지 조회", description = "user가 채팅방에 입장했을 때, 채팅방의 이전 메시지들을 불러옵니다.")
+    public ApiResponse<ApiResponse.SuccessBody<List<MessageResponse>>> roomMessage(@PathVariable String roomId) {
+        return ApiResponseGenerator.success(chatService.findMessagesById(roomId), HttpStatus.OK, MessageCode.SUCCESS);
     }
 }
