@@ -1,9 +1,13 @@
 package baby.lignin.service;
 
+import baby.lignin.entity.MessageEntity;
 import baby.lignin.entity.RoomEntity;
+import baby.lignin.model.ChatMessage;
 import baby.lignin.model.request.RoomCreateRequest;
 import baby.lignin.model.response.RoomInfoResponse;
+import baby.lignin.repository.MessageRepository;
 import baby.lignin.repository.RoomRepository;
+import baby.lignin.util.converter.MessageConverter;
 import baby.lignin.util.converter.RoomConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +21,7 @@ import java.util.*;
 public class ChatServiceImpl implements ChatService {
 
     private final RoomRepository roomRepository;
+    private final MessageRepository messageRepository;
 
     public List<RoomInfoResponse> findAllRoom() {
         List<RoomInfoResponse> roomInfoResponses = new ArrayList<>();
@@ -37,6 +42,12 @@ public class ChatServiceImpl implements ChatService {
 
     public RoomInfoResponse findRoomById(String roomId) {
         return RoomConverter.from(roomRepository.findByRoomId(roomId));
+    }
+
+    @Override
+    public void saveMessage(ChatMessage message) {
+        MessageEntity messageEntity = MessageConverter.to(message);
+        messageRepository.save(messageEntity);
     }
 
 //    public ChannelTopic sendMessage(ChatMessage message) {
