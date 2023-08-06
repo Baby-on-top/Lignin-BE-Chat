@@ -58,4 +58,11 @@ public class ChatRoomController {
     public ApiResponse<ApiResponse.SuccessBody<RoomInfoResponse>> roomInfo(@PathVariable String roomId) {
         return ApiResponseGenerator.success(chatService.findRoomById(roomId), HttpStatus.ACCEPTED, MessageCode.SUCCESS);
     }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String Test() {
+        return "lignin🐮";
+    }
+
 }
