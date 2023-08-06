@@ -13,5 +13,7 @@ public class ChatMessage {
     private MessageType type;   // 메시지 타입
     private String roomId;      // 방번호
     private String sender;      // 메시지 보낸 사람
+    private String userId;
+    private String profile;
     private String message;     // 메시지
 }
